@@ -6,21 +6,12 @@ import keyboard
 import logging 
 from logging.handlers import RotatingFileHandler
 
-#数値置場
-BUY_STANDARD = 30
-SELL_STANDARD = 70
-now_price = 140 #初期価格
-turn = 0 #初期ターン数
-buy_point = 0 #初期買い点
-sell_point = 0 #初期売り点
-status = "IDLE" #初期ステータス
-
 #開発メモ
 # def f(a):
 #     a += 1
 #     return a
 #関数内にて
-# a = f (a)　aの値を更新する
+# a = f (a) aの値を更新する
 #更新するときは値を受け取ることが大切
 #returnで返した値を使うことが多い
 #returnは変更された値を返す
@@ -39,7 +30,7 @@ def advance_turn01(turn):
 
 #ターン進行(時間)
 def advance_turn02(turn):
-    time.sleep(2)  # 2秒待機
+    time.sleep(1)  # 1秒待機
     turn += 1
     return turn
 
@@ -120,7 +111,18 @@ def test(turn, now_price, status, buy_point, sell_point, ):
     return buy_point, sell_point,status
 
 #メイン関数
-def main(turn, now_price,status, buy_point,sell_point):
+def main():
+
+    global BUY_STANDARD, SELL_STANDARD
+    
+    BUY_STANDARD = 50 
+    SELL_STANDARD = 50
+    now_price = 140 #初期価格
+    turn = 0 #初期ターン数
+    buy_point = 0 #初期買い点
+    sell_point = 0 #初期売り点
+    status = "IDLE" #初期ステータス
+
     while True:
         if turn <= 20:
             buy_point,sell_point,status = test(turn, now_price, status, buy_point, sell_point)
@@ -132,5 +134,5 @@ def main(turn, now_price,status, buy_point,sell_point):
     return buy_point, sell_point, status, turn
 
 if __name__ == "__main__":
-    buy_point, sell_point, status, turn = main(turn, now_price, status, buy_point, sell_point)
+    main()
     
